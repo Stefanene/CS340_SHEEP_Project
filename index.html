@@ -9,12 +9,49 @@
     <p> Welcome to our shoe browsing and buying business! </p>
     <ul> <!-- navbar -->
       <li><a class="active" href="#home">Home</a></li>
-      <li><a href="#shoes">Shoes</a></li>
-      <li><a href="#stores">Locations</a></li>
-      <li style="float:right"><a href="#account">Account</a></li>
+      <li><a href="./shoefinder.html">Shoe Finder</a></li>
+      <li><a href="./locations.html">Locations</a></li>
+      <li><a href="./customers.html">Customers</a></li>
+      <li><a href="./employees.html">Employees</a></li>
+      <li><a href="./sales.html">Sales</a></li>
     </ul>
     <h2>Shoe Search</h2> <!-- shoes page stuff -->
-
-
+    <table border="1" cellpadding="5">
+      <tr>
+        <th><a href="#" onClick="newShoe()">New</a></th>
+        <th></th>
+        <th>productID</th>
+        <th>name</th>
+        <th>price</th>
+      </tr>
+      <tr>
+        <td><a href="#" onClick="updateShoes('this.productID')">Edit</a></td>
+        <td><a href="#" onclick="deleteShoe('this.productID')">Delete</a></td>
+        <td align="right">1</td>
+        <td>Nike Air Force 1 07</td>
+        <td>$100</td>
+      </tr>
+      <tr>
+        <td><a href="#" onClick="updateShoes('this.productID')">Edit</a></td>
+        <td><a href="#" onclick="deleteShoe('this.productID')">Delete</a></td>
+        <td align="right">2</td>
+        <td>Jordan 1 Hyper Royals</td>
+        <td>$400</td>
+      </tr>
+      <tr>
+        <td><a href="#" onClick="updateShoes('this.productID')">Edit</a></td>
+        <td><a href="#" onclick="deleteShoe('this.productID')">Delete</a></td>
+        <td align="right">3</td>
+        <td>Nike SB Dunk Low Pro Black Gum</td>
+        <td>$126</td>
+      </tr>
+      <tr>
+        <td><a href="#" onClick="updateShoes('this.productID')">Edit</a></td>
+        <td><a href="#" onclick="deleteShoe('this.productID')">Delete</a></td>
+        <td align="right">4</td>
+        <td>Kobe 6 the Grinch</td>
+        <td>$1000</td>
+      </tr>
+    </table>
   </body>
 </html>

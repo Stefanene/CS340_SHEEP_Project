@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SHEEP Shoes</title>
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+    <h1>SHEEP Shoes</h1>
+    <p> Welcome to our shoe browsing and buying business! </p>
+    <ul> <!-- navbar -->
+      <li><a href="./index.html">Home</a></li>
+      <li><a href="./shoefinder.html">Shoe Finder</a></li>
+      <li><a href="./locations.html">Locations</a></li>
+      <li><a class="active" href="./customers.html">Customers</a></li>
+      <li><a href="./employees.html">Employees</a></li>
+      <li><a href="./sales.html">Sales</a></li>
+    </ul>
+    <h2>Customer List</h2> <!-- customer page stuff -->
+    <table border="1" cellpadding="5">
+      <tr>
+        <th><a href="#" onClick="newCustomer()">New</a></th>
+        <th></th>
+        <th>customerID</th>
+        <th>emial</th>
+        <th>password</th>
+      </tr>
+      <tr>
+        <td><a href="#" onClick="updateCustomer('this.customerID')">Edit</a></td>
+        <td><a href="#" onclick="deleteCustomer('this.customerID')">Delete</a></td>
+        <td align="right">1</td>
+        <td>sneakers@goat.com</td>
+        <td>bestbusinesseva10</td>
+      </tr>
+      <tr>
+        <td><a href="#" onClick="updateCustomer('this.customerID')">Edit</a></td>
+        <td><a href="#" onclick="deleteCustomer('this.customerID')">Delete</a></td>
+        <td align="right">2</td>
+        <td>realemail@fake.com</td>
+        <td>wesellfakeshoes</td>
+      </tr>
+      <tr>
+        <td><a href="#" onClick="updateCustomer('this.customerID')">Edit</a></td>
+        <td><a href="#" onclick="deleteCustomer('this.customerID')">Delete</a></td>
+        <td align="right">3</td>
+        <td>dwight@theoffice.com</td>
+        <td>bearsbeetsbattlestargalactica</td>
+      </tr>
+      <tr>
+        <td><a href="#" onClick="updateCustomer('this.customerID')">Edit</a></td>
+        <td><a href="#" onclick="deleteCustomer('this.customerID')">Delete</a></td>
+        <td align="right">4</td>
+        <td>notfakes@amazon.com</td>
+        <td>sellinshoesallday123</td>
+      </tr>
+    </table>
+  </body>
+</html>

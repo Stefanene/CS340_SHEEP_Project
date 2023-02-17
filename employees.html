@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SHEEP Shoes</title>
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+    <h1>SHEEP Shoes</h1>
+    <p> Welcome to our shoe browsing and buying business! </p>
+    <ul> <!-- navbar -->
+      <li><a href="./index.html">Home</a></li>
+      <li><a href="./shoefinder.html">Shoe Finder</a></li>
+      <li><a href="./locations.html">Locations</a></li>
+      <li><a href="./customers.html">Customers</a></li>
+      <li><a class="active" href="./employees.html">Employees</a></li>
+      <li><a href="./sales.html">Sales</a></li>
+    </ul>
+    <h2>Employee List</h2> <!-- employee page stuff -->
+    <table border="1" cellpadding="5">
+      <tr>
+        <th><a href="#" onClick="newEmployee()">New</a></th>
+        <th></th>
+        <th>employeeID</th>
+        <th>email</th>
+        <th>password</th>
+        <th>position_rank</th>
+      </tr>
+      <tr>
+        <td><a href="#" onClick="updateEmployee('this.employeeID')">Edit</a></td>
+        <td><a href="#" onclick="deleteEmployee('this.employeeID')">Delete</a></td>
+        <td align="right">1</td>
+        <td>poetrav@oregonstate.edu</td>
+        <td>sneakerhead!OSU1</td>
+        <td>5</td>
+      </tr>
+      <tr>
+        <td><a href="#" onClick="updateEmployee('this.employeeID')">Edit</a></td>
+        <td><a href="#" onclick="deleteEmployee('this.employeeID')">Delete</a></td>
+        <td align="right">2</td>
+        <td>enes@oregonstate.edu</td>
+        <td>!ilikemotorcycles123</td>
+        <td>5</td>
+      </tr>
+      <tr>
+        <td><a href="#" onClick="updateEmployee('this.employeeID')">Edit</a></td>
+        <td><a href="#" onclick="deleteEmployee('this.employeeID')">Delete</a></td>
+        <td align="right">3</td>
+        <td>dobbyTheClerk@oregonstate.edu</td>
+        <td>socks4213</td>
+        <td>1</td>
+      </tr>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SHEEP Shoes</title>
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+    <h1>SHEEP Shoes</h1>
+    <p> Welcome to our shoe browsing and buying business! </p>
+    <ul> <!-- navbar -->
+      <li><a href="./index.html">Home</a></li>
+      <li><a class="active"  href="./shoefinder.html">Shoe Finder</a></li>
+      <li><a href="./locations.html">Locations</a></li>
+      <li><a href="./customers.html">Customers</a></li>
+      <li><a href="./employees.html">Employees</a></li>
+      <li><a href="./sales.html">Sales</a></li>
+    </ul>
+    <h2>Shoe Finder </h2> <!-- shoe finder page stuff -->
+    <table border="1" cellpadding="5">
+      <tr>
+        <th><a href="#" onClick="newShoeLoco()">New</a></th>
+        <th></th>
+        <th>productID</th>
+        <th>storeID</th>
+        <th>inventory_size</th>
+        <th>sizeAvailable</th>
+      </tr>
+      <tr>
+        <td><a href="#" onClick="updateShoesLoco('this.productID', 'this.storeID')">Edit</a></td>
+        <td><a href="#" onclick="deleteShoeLoco('this.productID' 'this.storeID')">Delete</a></td>
+        <td align="right">1</td>
+        <td align="right">3</td>
+        <td>40</td>
+        <td>5,6,7,8,9</td>
+      </tr>
+      <tr>
+        <td><a href="#" onClick="updateShoesLoco('this.productID' 'this.storeID')">Edit</a></td>
+        <td><a href="#" onclick="deleteShoeLoco('this.productID' 'this.storeID')">Delete</a></td>
+        <td align="right">1</td>
+        <td align="right">1</td>
+        <td>0</td>
+        <td>7,8,9</td>
+      </tr>
+      <tr>
+        <td><a href="#" onClick="updateShoesLoco('this.productID' 'this.storeID')">Edit</a></td>
+        <td><a href="#" onclick="deleteShoeLoco('this.productID' 'this.storeID')">Delete</a></td>
+        <td align="right">2</td>
+        <td align="right">3</td>
+        <td>20</td>
+        <td>5,6,7,9,11</td>
+      </tr>
+    </table>
+  </body>
+</html>
