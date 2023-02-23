@@ -13,10 +13,11 @@ INSERT INTO Employees (email, password, position_rank)
 VALUES (:email, :password, :position_rank);
 
 INSERT INTO Sales (sid, cid, time_of_sale, eid)
-VALUES ((SELECT storeID FROM StoreLocations WHERE store_name = :store_name), (SELECT customerID FROM Customers WHERE email = :email), :time_of_sale, (SELECT employeeID FROM Employees WHERE email = :email));
+VALUES (:storeID, :customerID, :time_of_sale, :employeeID);
 
 INSERT INTO SneakerToLocations (productID, storeID, inventory_size, sizeAvailable)
 VALUES ((SELECT productID FROM Sneakers WHERE name = :name), (SELECT storeID FROM StoreLocations WHERE store_name = :store_name), :inventory_size, :sizeAvailable);
+
 
 -- SELECTs -----------------------------------------------------------------------------
 
@@ -31,6 +32,51 @@ SELECT * FROM Employees;
 SELECT * FROM Sales;
 
 SELECT * FROM SneakerToLocations;
+
+-- get store id and name for the sales drop down
+
+SELECT storeID, store_name FROM StoreLocations;
+
+-- get customer email for the sales drop down
+
+SELECT customerID, email FROM Customers;
+
+-- get employee name and email for sales drop down
+
+SELECT employeeID, email FROM Employees;
+
+-- get store id and name for the SneakerToLocations drop down
+
+SELECT storeID, store_name FROM StoreLocations;
+
+-- get productID and name for sales drop down
+
+SELECT productID, name FROM Sneakers;
+
+-- data used to prepopulate update form for Sneakers
+
+SELECT name, price FROM Sneakers;
+
+-- data used to prepopulate update form for Customers
+
+SELECT name, email FROM Customers;
+
+-- data used to prepopulate update form for StoreLocations
+
+SELECT store_name, physical_address, staff_size FROM Sneakers;
+
+-- data used to prepopulate update form for Employees
+
+SELECT name, email FROM Employees;
+
+-- data used to prepopulate update form for Sales
+
+SELECT time_of_sale FROM Sales;
+
+-- data used to prepopulate update form for SneakerToLocations
+
+SELECT inventory_size FROM Sneakers;
+
 
 -- UPDATES -----------------------------------------------------------------------------
 /*Foreing keys are not allowed to be edited*/

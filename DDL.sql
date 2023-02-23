@@ -29,6 +29,8 @@ CREATE TABLE Customers (
 	PRIMARY KEY (customerID)
 );
 
+-- Employees entity
+
 CREATE TABLE Employees (
 	employeeID int NOT NULL AUTO_INCREMENT UNIQUE,
 	email varchar(50) NOT NULL,
@@ -46,9 +48,11 @@ CREATE TABLE Sales (
 	time_of_sale datetime NOT NULL,
 	eid int NOT NULL,
 	PRIMARY KEY (saleID),
-	FOREIGN KEY (sid) REFERENCES StoreLocations(storeID),
-	FOREIGN KEY (cid) REFERENCES Customers(customerID),
-	FOREIGN KEY (eid) REFERENCES Employees(employeeID)
+	-- sale is not deleted when FKs are deleted, because they're used to keep record
+	FOREIGN KEY (sid) REFERENCES StoreLocations(storeID) ON DELETE NO ACTION,
+	FOREIGN KEY (cid) REFERENCES Customers(customerID) ON DELETE NO ACTION,
+	-- eid is nullable
+	FOREIGN KEY (eid) REFERENCES Employees(employeeID) ON DELETE NO ACTION
 );
 
 -- StoreLocations entity
@@ -70,11 +74,10 @@ CREATE TABLE SneakerToLocations (
 	-- I made size availble a string so we can put a list of sizes available
 	sizeAvailable varchar(255),  
 	PRIMARY KEY (productID, storeID),
-	FOREIGN KEY (productID) REFERENCES Sneakers(productID),
-	FOREIGN KEY (storeID) REFERENCES StoreLocations(storeID)
+	FOREIGN KEY (productID) REFERENCES Sneakers(productID) ON DELETE CASCADE,
+	FOREIGN KEY (storeID) REFERENCES StoreLocations(storeID) ON DELETE CASCADE
 );
 
--- Employees entity
 
 -- sample data inserts
 
