@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SHEEP Shoes</title>
+    <title>SHEEP Sneakers</title>
     <link href="style.css" rel="stylesheet" type="text/css"/>
   </head>
   <body>
-    <h1>SHEEP Shoes</h1>
-    <p> Welcome to our shoe browsing and buying business! </p>
+    <h1>SHEEP Sneakers</h1>
+    <p> Welcome to our Sneaker browsing and buying business! </p>
     <ul> <!-- navbar -->
       <li><a href="./index.html">Home</a></li>
-      <li><a href="./shoefinder.html">Shoe Finder</a></li>
+      <li><a href="./shoefinder.html">Sneaker Finder</a></li>
       <li><a class="active" href="./locations.html">Locations</a></li>
       <li><a href="./customers.html">Customers</a></li>
       <li><a href="./employees.html">Employees</a></li>
       <li><a href="./sales.html">Sales</a></li>
     </ul>
-    <h2>Lcoation List</h2> <!-- store page stuff -->
+    <h2>Locations List</h2> <!-- store page stuff -->
     <table border="1" cellpadding="5">
       <tr>
-        <th><a href="#" onClick="newStore()">New</a></th>
+        <th></th>
         <th></th>
         <th>storeID</th>
         <th>store_name</th>
@@ -26,36 +26,95 @@
         <th>staff_size</th>
       </tr>
       <tr>
-        <td><a href="#" onClick="updateStore('this.storeID')">Edit</a></td>
-        <td><a href="#" onclick="deleteStore('this.storeID')">Delete</a></td>
+        <td><a href="#" onClick="updateStoreField('this.storeID')">Edit</a></td>
+        <td><a href="#" onclick="deleteStoreField('this.storeID')">Delete</a></td>
         <td align="right">1</td>
         <td>OSU Beaver Store</td>
         <td>663 SW 26th St, Corvallis, OR 97331</td>
         <td>3</td>
       </tr>
       <tr>
-        <td><a href="#" onClick="updateStore('this.storeID')">Edit</a></td>
-        <td><a href="#" onclick="deleteStore('this.storeID')">Delete</a></td>
+        <td><a href="#" onClick="updateStoreField('this.storeID')">Edit</a></td>
+        <td><a href="#" onclick="deleteStoreField('this.storeID')">Delete</a></td>
         <td align="right">2</td>
         <td>NewBury Mall</td>
         <td>45th avenue North, Seattle, OR 94881</td>
         <td>6</td>
       </tr>
       <tr>
-        <td><a href="#" onClick="updateStore('this.storeID')">Edit</a></td>
-        <td><a href="#" onclick="deleteStore('this.storeID')">Delete</a></td>
+        <td><a href="#" onClick="updateStoreField('this.storeID')">Edit</a></td>
+        <td><a href="#" onclick="deleteStoreField('this.storeID')">Delete</a></td>
         <td align="right">3</td>
         <td>KoreaTown</td>
         <td>199 SE 444 St, Newport, OR 98111</td>
         <td>4</td>
       </tr>
       <tr>
-        <td><a href="#" onClick="updateStore('this.storeID')">Edit</a></td>
-        <td><a href="#" onclick="deleteStore('this.storeID')">Delete</a></td>
+        <td><a href="#" onClick="updateStoreField('this.storeID')">Edit</a></td>
+        <td><a href="#" onclick="deleteStoreField('this.storeID')">Delete</a></td>
         <td align="right">4</td>
         <td>SHEEP Headquarters Store</td>
         <td>4720 NW Bethany Blvd, Portland, OR 97229</td>
         <td>5</td>
+      </tr>
+    </table>
+    <br><br>
+    <table border="1" cellpadding="5">
+      <tr>
+        <td>
+          <h2 class="lm">Add New Store</h2>
+          <form>
+            <label for="store_name">Enter store name:</label>
+            <input type="text" id="store_name" name="store_name"><br><br>
+            <label for="physical_address">Enter store address:</label>
+            <input type="text" id="physical_address" name="physical_address"><br><br>
+            <label for="staff_size">Enter staff size:</label>
+            <input type="text" id="staff_size" name="staff_size"><br><br>
+            <input class="btn" type="submit" value="Submit" onClick="newStore()">
+          </form>
+        </td>
+      </tr>
+    </table>
+    <br><br>
+    <table border="1" cellpadding="5">
+      <tr>
+        <td>
+          <h2 class="lm">Update Store</h2>
+          <form>
+            <label for="storeID">Choose store by ID:</label>
+            <select name="storeID" id="storeID">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select> <br><br>
+            <label for="store_name">Enter new name:</label>
+            <input type="text" id="store_name" name="store_name"><br><br>
+            <label for="physical_address">Enter new address:</label>
+            <input type="text" id="physical_address" name="physical_address"><br><br>
+            <label for="price">Enter new staff size:</label>
+            <input type="text" id="staff_size" name="staff_size"><br><br>
+            <input class="btn" type="submit" value="Submit" onClick="updateStore()">
+          </form>
+        </td>
+      </tr>
+    </table>
+    <br><br>
+    <table border="1" cellpadding="5">
+      <tr>
+        <td>
+          <h2 class="lm">Delete Store</h2>
+          <form>
+            <label for="storeID">Choose store by ID:</label>
+            <select name="storeID" id="storeID">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select> <br><br>
+            <input class="btn" type="submit" value="Submit" onClick="deleteStore()">
+          </form>
+        </td>
       </tr>
     </table>
   </body>

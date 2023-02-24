@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SHEEP Shoes</title>
+    <title>SHEEP Sneakers</title>
     <link href="style.css" rel="stylesheet" type="text/css"/>
   </head>
   <body>
-    <h1>SHEEP Shoes</h1>
-    <p> Welcome to our shoe browsing and buying business! </p>
+    <h1>SHEEP Sneakers</h1>
+    <p> Welcome to our Sneaker browsing and buying business! </p>
     <ul> <!-- navbar -->
       <li><a href="./index.html">Home</a></li>
-      <li><a href="./shoefinder.html">Shoe Finder</a></li>
+      <li><a href="./shoefinder.html">Sneaker Finder</a></li>
       <li><a href="./locations.html">Locations</a></li>
       <li><a href="./customers.html">Customers</a></li>
       <li><a href="./employees.html">Employees</a></li>
@@ -18,7 +18,7 @@
     <h2>Sales list</h2> <!-- sales page stuff -->
     <table border="1" cellpadding="5">
       <tr>
-        <th><a href="#" onClick="newSale()">New</a></th>
+        <th></th>
         <th></th>
         <th>saleID</th>
         <th>sid</th>
@@ -27,8 +27,8 @@
         <th>eid</th>
       </tr>
       <tr>
-        <td><a href="#" onClick="updateSale('this.saleID')">Edit</a></td>
-        <td><a href="#" onclick="deleteSale('this.saleID')">Delete</a></td>
+        <td><a href="#" onClick="updateSaleField('this.saleID')">Edit</a></td>
+        <td><a href="#" onclick="deleteSaleField('this.saleID')">Delete</a></td>
         <td align="right">1</td>
         <td>1</td>
         <td>1</td>
@@ -36,8 +36,8 @@
         <td>1</td>
       </tr>
       <tr>
-        <td><a href="#" onClick="updateSale('this.saleID')">Edit</a></td>
-        <td><a href="#" onclick="deleteSale('this.saleID')">Delete</a></td>
+        <td><a href="#" onClick="updateSaleField('this.saleID')">Edit</a></td>
+        <td><a href="#" onclick="deleteSaleField('this.saleID')">Delete</a></td>
         <td align="right">2</td>
         <td>1</td>
         <td>1</td>
@@ -45,8 +45,8 @@
         <td>1</td>
       </tr>
       <tr>
-        <td><a href="#" onClick="updateSale('this.saleID')">Edit</a></td>
-        <td><a href="#" onclick="deleteSale('this.saleID')">Delete</a></td>
+        <td><a href="#" onClick="updateSaleField('this.saleID')">Edit</a></td>
+        <td><a href="#" onclick="deleteSaleField('this.saleID')">Delete</a></td>
         <td align="right">3</td>
         <td>4</td>
         <td>2</td>
@@ -54,13 +54,106 @@
         <td>2</td>
       </tr>
       <tr>
-        <td><a href="#" onClick="updateSale('this.saleID')">Edit</a></td>
-        <td><a href="#" onclick="deleteSale('this.saleID')">Delete</a></td>
+        <td><a href="#" onClick="updateSaleField('this.saleID')">Edit</a></td>
+        <td><a href="#" onclick="deleteSaleField('this.saleID')">Delete</a></td>
         <td align="right">4</td>
         <td>2</td>
         <td>3</td>
         <td>2015-07-24</td>
         <td>1</td>
+      </tr>
+    </table>
+    <br><br>
+    <table border="1" cellpadding="5">
+      <tr>
+        <td>
+          <h2 class="lm">Add Sale Invoice</h2>
+          <form>
+            <label for="sid">Choose store:</label>
+            <select name="sid" id="sid">
+              <option value="1">OSU Beaver Store</option>
+              <option value="2">NewBury Mall</option>
+              <option value="3">KoreaTown</option>
+              <option value="4">SHEEP Headquarters Store</option>
+            </select> <br><br>
+            <label for="cid">Choose customer:</label>
+            <select name="cid" id="cid">
+              <option value="1">sneakers@goat.com</option>
+              <option value="2">realemail@fake.com</option>
+              <option value="3">dwight@theoffice.com  </option>
+              <option value="4">notfakes@amazon.com </option>
+            </select> <br><br>
+            <label for="time_of_sale">Enter date of sale:</label>
+            <input type="text" placeholder="YYYY-MM-DD" id="time_of_sale" name="time_of_sale"><br><br>
+            <label for="eid">Choose employee:</label>
+            <select name="eid" id="eid">
+              <option value="0">NULL</option>
+              <option value="1">poetrav@oregonstate.edu</option>
+              <option value="2">enes@oregonstate.edu</option>
+              <option value="3">dobbyTheClerk@oregonstate.edu</option>
+            </select> <br><br>
+            <input class="btn" type="submit" value="Submit" onClick="newSale()">
+          </form>
+        </td>
+      </tr>
+    </table>
+    <br><br>
+    <table border="1" cellpadding="5">
+      <tr>
+        <td>
+          <h2 class="lm">Update Sale Invoice</h2>
+          <form>
+            <label for="saleID">Choose sale by ID:</label>
+            <select name="saleID" id="saleID">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select> <br><br>
+            <label for="sid">Choose store:</label>
+            <select name="sid" id="sid">
+              <option value="1">OSU Beaver Store</option>
+              <option value="2">NewBury Mall</option>
+              <option value="3">KoreaTown</option>
+              <option value="4">SHEEP Headquarters Store</option>
+            </select> <br><br>
+            <label for="cid">Choose customer:</label>
+            <select name="cid" id="cid">
+              <option value="1">sneakers@goat.com</option>
+              <option value="2">realemail@fake.com</option>
+              <option value="3">dwight@theoffice.com  </option>
+              <option value="4">notfakes@amazon.com </option>
+            </select> <br><br>
+            <label for="time_of_sale">Enter date of sale:</label>
+            <input type="text" placeholder="YYYY-MM-DD" id="time_of_sale" name="time_of_sale"><br><br>
+            <label for="eid">Choose employee:</label>
+            <select name="eid" id="eid">
+              <option value="0">NULL</option>
+              <option value="1">poetrav@oregonstate.edu</option>
+              <option value="2">enes@oregonstate.edu</option>
+              <option value="3">dobbyTheClerk@oregonstate.edu</option>
+            </select> <br><br>
+            <input class="btn" type="submit" value="Submit" onClick="updateSale()">
+          </form>
+        </td>
+      </tr>
+    </table>
+    <br><br>
+    <table border="1" cellpadding="5">
+      <tr>
+        <td>
+          <h2 class="lm">Update Sale Invoice</h2>
+          <form>
+            <label for="saleID">Choose sale by ID:</label>
+            <select name="saleID" id="saleID">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select> <br><br>
+            <input class="btn" type="submit" value="Submit" onClick="deleteSale()">
+          </form>
+        </td>
       </tr>
     </table>
   </body>
