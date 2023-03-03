@@ -1,15 +1,15 @@
-<!-- index.hbs -->
+<!-- locations.hbs -->
 <h1>SHEEP Sneakers</h1>
 <p> Welcome to our Sneaker browsing and buying business! </p>
 <ul> <!-- navbar -->
-    <li><a class="active" href="/">Sneakers</a></li>
+    <li><a href="/">Sneakers</a></li>
     <li><a href="/shoefinder">Sneaker Finder</a></li>
-    <li><a href="/locations">Locations</a></li>
+    <li><a class="active" href="/locations">Locations</a></li>
     <li><a href="/customers">Customers</a></li>
     <li><a href="/employees">Employees</a></li>
-    <li><a href="/sales">Sales</a></li>
+    <li><a href="/customers">Sales</a></li>
 </ul>
-<h2>Sneaker Search</h2> <!-- Sneakers page stuff -->
+<h2>Locations List</h2> <!-- Locations page stuff -->
 {{!-- Create a table --}}
 <table border="1" cellpadding="5">
 
@@ -33,9 +33,10 @@
         {{!-- For each row, print the id, name, and price, in order --}}
         {{#each data}}
         <tr>
-            <td>{{this.productID}}</td>
-            <td>{{this.name}}</td>
-            <td>${{this.price}}</td>
+            <td>{{this.storeID}}</td>
+            <td>{{this.store_name}}</td>
+            <td>{{this.physical_address}}</td>
+            <td>{{this.staff_size}}</td>
         </tr>
         {{/each}}
     </tbody>
