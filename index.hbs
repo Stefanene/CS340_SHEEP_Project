@@ -1,0 +1,75 @@
+<!-- index.hbs -->
+<h1>SHEEP Sneakers</h1>
+<p> Welcome to our Sneaker browsing and buying business! </p>
+<ul> <!-- navbar -->
+    <li><a class="active" href="">Sneakers</a></li>
+    <li><a href="">Sneaker Finder</a></li>
+    <li><a href="">Locations</a></li>
+    <li><a href="">Customers</a></li>
+    <li><a href="">Employees</a></li>
+    <li><a href="">Sales</a></li>
+</ul>
+<h2>Sneaker Search</h2> <!-- Sneakers page stuff -->
+{{!-- Create a table --}}
+<table border="1" cellpadding="5" id="sneakerTable">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, name, and price, in order --}}
+        {{#each data}}
+        <tr data-value={{this.productID}}>
+            <td>{{this.productID}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.price}}</td>
+            <td><button onclick="deleteSneaker({{this.productID}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/deleteSneaker.js"></script>
+
+<p>To add a new person, please enter their information below nad click `Submit`!</p>
+<form id="addSneakerForm" method="POST" action="/addSneakerForm">
+    <label for="sneakerName">Name: </label>
+    <input type="text" name="sneakerName" id="sneakerName">
+    
+    <label for="price">Price: </label>
+    <input type="number" name="price" id="price">
+
+    <input type="submit">
+</form>
+<script src="./js/addSneaker.js"></script>
+
+
+<p>To update a shoe select the shoe you'd like to update and click update</p>
+
+<form id="updateSneakerForm" method="POST" action="/updateSneakerForm">
+    <select name="sneakerSelect" id="sneakerSelect">
+        <option value="">Select a shoe</option>
+        {{#each sneakers}}
+        <option value="{{this.productID}}">{{this.name}}</option>
+        {{/each}}
+    </select>
+
+    <label for="price">Price: </label>
+    <input type="number" name="price" id="price">
+
+    <input type="submit">
+</form>
+<script src="./js/updateSneaker.js"></script>
