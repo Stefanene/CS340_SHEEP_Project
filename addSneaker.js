@@ -1,5 +1,9 @@
 // Get the objects we need to modify
+<<<<<<< HEAD
+let addSneakerform = document.getElementById('addSneakerForm');
+=======
 let addSneakerform = document.getElementById('addSneakerform');
+>>>>>>> c528f61fc96b19783d96f48a6bc5bf45dc6888fc
 
 // Modify the objects we need
 addSneakerform.addEventListener("submit", function (e) {
@@ -68,17 +72,47 @@ addRowToTable = (data) => {
     let nameCell = document.createElement("TD");
     let priceCell = document.createElement("TD");
 
+<<<<<<< HEAD
+    let deleteCell = document.createElement("TD");
+
+
+=======
+>>>>>>> c528f61fc96b19783d96f48a6bc5bf45dc6888fc
     // Fill the cells with correct data
     idCell.innerText = newRow.productID;
     nameCell.innerText = newRow.name;
     priceCell.innerText = newRow.price;
 
+<<<<<<< HEAD
+    deleteCell = document.createElement("button");
+    deleteCell.innerHTML = "Delete";
+    deleteCell.onclick = function(){
+        deleteSneaker(newRow.productID);
+    };
+
+=======
+>>>>>>> c528f61fc96b19783d96f48a6bc5bf45dc6888fc
     // Add the cells to the row 
     row.appendChild(idCell);
     row.appendChild(nameCell);
     row.appendChild(priceCell);
+<<<<<<< HEAD
+    row.appendChild(deleteCell);
+
+    row.setAttribute('data-value', newRow.productID);
+=======
+>>>>>>> c528f61fc96b19783d96f48a6bc5bf45dc6888fc
 
     
     // Add the row to the table
     currentTable.appendChild(row);
+<<<<<<< HEAD
+
+    let selectMenu = document.getElementById("mySelectSneaker");
+    let option = document.createElement("option");
+    option.text = newRow.name;
+    option.value = newRow.productID;
+    selectMenu.add(option);
+=======
+>>>>>>> c528f61fc96b19783d96f48a6bc5bf45dc6888fc
 }

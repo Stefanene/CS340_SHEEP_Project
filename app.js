@@ -41,7 +41,11 @@ app.post('/addSneakerForm', function(req, res){
     let data = req.body;
 
     // Create the query and run it on the database
+<<<<<<< HEAD
+    query1 = `INSERT INTO Sneakers (name, price) VALUES ('${data.name}', '${data.price}')`;
+=======
     query1 = `INSERT INTO Sneakers (name, price) VALUES ('${data.sneakerName}', '${data.price}')`;
+>>>>>>> c528f61fc96b19783d96f48a6bc5bf45dc6888fc
     db.pool.query(query1, function(error, rows, fields){
 
         // Check to see if there was an error
@@ -68,7 +72,11 @@ app.post('/addSneakerForm', function(req, res){
                 // If all went well, send the results of the query back.
                 else
                 {
+<<<<<<< HEAD
+                    res.send(rows);
+=======
                     res.redirect('/');
+>>>>>>> c528f61fc96b19783d96f48a6bc5bf45dc6888fc
                 }
             })
         }
@@ -106,6 +114,19 @@ app.delete('/deleteSneakerButton', function(req,res,next){
               }
 })});
 
+<<<<<<< HEAD
+  app.put('/updateSneakerAjax', function(req,res,next){
+    let data = req.body;
+  
+    let sneakerID = parseInt(data.productID);
+    let sneakerPrice = parseInt(data.price);
+  
+    let queryUpdatePrice = `UPDATE Sneakers SET price = '${sneakerPrice}' WHERE productID = '${sneakerID}'`;
+    let selectSneaker = `SELECT * FROM Sneakers WHERE productID = '${sneakerID}'`
+  
+          // Run the 1st query
+          db.pool.query(queryUpdatePrice, function(error, rows, fields){
+=======
   app.put('/updateSneakerForm', function(req,res,next){
     let data = req.body;
   
@@ -117,6 +138,7 @@ app.delete('/deleteSneakerButton', function(req,res,next){
   
           // Run the 1st query
           db.pool.query(queryUpdatePrice, [sneakerName, price], function(error, rows, fields){
+>>>>>>> c528f61fc96b19783d96f48a6bc5bf45dc6888fc
               if (error) {
   
               // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
@@ -129,7 +151,11 @@ app.delete('/deleteSneakerButton', function(req,res,next){
               else
               {
                   // Run the second query
+<<<<<<< HEAD
+                  db.pool.query(selectSneaker, function(error, rows, fields) {
+=======
                   db.pool.query(selectSneaker, [sneakerName], function(error, rows, fields) {
+>>>>>>> c528f61fc96b19783d96f48a6bc5bf45dc6888fc
   
                       if (error) {
                           console.log(error);
@@ -141,6 +167,70 @@ app.delete('/deleteSneakerButton', function(req,res,next){
               }
   })});
 
+<<<<<<< HEAD
+=======
+app.get('/locations', function(req, res) {
+
+    //StoreLocations page
+        
+    let queryL1 = "SELECT * FROM StoreLocations;";
+    db.pool.query(queryL1, function(errorL, rowsL, fieldsL){    // Execute the query
+        res.render('locations', {data: rowsL});                  // Render the index.hbs file, and also send the renderer
+    });   
+
+});
+
+
+app.get('/customers', function(req, res) {
+
+    //Customers page
+        
+    let queryL1 = "SELECT * FROM Customers;";
+    db.pool.query(queryL1, function(errorC, rowsC, fieldsC){    // Execute the query
+        res.render('customers', {data: rowsC});                  // Render the index.hbs file, and also send the renderer
+    });   
+
+});
+
+
+app.get('/employees', function(req, res) {
+
+    //Employees page
+        
+    let queryL1 = "SELECT * FROM Employees;";
+    db.pool.query(queryL1, function(errorE, rowsE, fieldsE){    // Execute the query
+        res.render('employees', {data: rowsE});                  // Render the index.hbs file, and also send the renderer
+    });   
+
+});
+
+
+app.get('/shoefinder', function(req, res) {
+
+    //SneakerToLocations page
+        
+    let queryL1 = "SELECT * FROM SneakerToLocations;";
+    db.pool.query(queryL1, function(errorSL, rowsSL, fieldsSL){    // Execute the query
+        res.render('shoefinder', {data: rowsSL});                  // Render the index.hbs file, and also send the renderer
+    });   
+
+});
+
+
+app.get('/sales', function(req, res) {
+
+    //Sales page
+        
+    let queryL1 = "SELECT * FROM Sales;";
+    db.pool.query(queryL1, function(errorS, rowsS, fieldsS){    // Execute the query
+        res.render('sales', {data: rowsS});                  // Render the index.hbs file, and also send the renderer
+    });   
+
+});
+
+
+
+>>>>>>> c528f61fc96b19783d96f48a6bc5bf45dc6888fc
 /*
     LISTENER
 */
