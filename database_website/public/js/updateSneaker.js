@@ -9,36 +9,34 @@ updateSneakerForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
     // Get form fields we need to get data from
-    let inputSneakerName = document.getElementById("sneakerSelect");
-    let inputPrice = document.getElementById("price");
+    let inputSneakerName = document.getElementById("mySelectSneaker");
+    let inputPrice = document.getElementById("updatePrice");
 
     // Get the values from the form fields
-    let inputSneakerNameValue = inputSneakerName.value;
-    let inputPriceValue = inputPrice.value;
+    let SneakerNameValue = inputSneakerName.value;
+    let PriceValue = inputPrice.value;
     
     // currently the database table for bsg_people does not allow updating values to NULL
     // so we must abort if being bassed NULL for homeworld
 
-    if (isNaN(inputSneakerNameValue)) 
+    if (isNaN(PriceValue)) 
     {
         return;
     }
-
-    if (isNaN(inputPriceValue)) 
+    if (isNaN(SneakerNameValue)) 
     {
         return;
     }
-
 
     // Put our data we want to send in a javascript object
     let data = {
-        name: inputSneakerNameValue,
-        price: inputPriceValue,
+        productID: SneakerNameValue,
+        price: PriceValue,
     }
     
     // Setup our AJAX request
     var xhttp = new XMLHttpRequest();
-    xhttp.open("PUT", "/updateSneakerForm", true);
+    xhttp.open("PUT", "/updateSneakerAjax", true);
     xhttp.setRequestHeader("Content-type", "application/json");
 
     // Tell our AJAX request how to resolve
@@ -46,7 +44,7 @@ updateSneakerForm.addEventListener("submit", function (e) {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
 
             // Add the new data to the table
-            updateRow(xhttp.response, inputSneakerNameValue);
+            updateRow(xhttp.response, SneakerNameValue);
 
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
@@ -74,10 +72,10 @@ function updateRow(data, productID){
             let updateRowIndex = table.getElementsByTagName("tr")[i];
 
             // Get td of homeworld value
-            let td = updateRowIndex.getElementsByTagName("td")[3];
+            let td = updateRowIndex.getElementsByTagName("td")[2];
 
-            // Reassign homeworld to our value we updated to
-            td.innerHTML = parsedData[0].name; 
+            // update the price
+            td.innerHTML = parsedData[0].price;
        }
     }
 }

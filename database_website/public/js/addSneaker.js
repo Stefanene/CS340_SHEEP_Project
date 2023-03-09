@@ -1,5 +1,5 @@
 // Get the objects we need to modify
-let addSneakerform = document.getElementById('addSneakerform');
+let addSneakerform = document.getElementById('addSneakerForm');
 
 // Modify the objects we need
 addSneakerform.addEventListener("submit", function (e) {
@@ -68,17 +68,35 @@ addRowToTable = (data) => {
     let nameCell = document.createElement("TD");
     let priceCell = document.createElement("TD");
 
+    let deleteCell = document.createElement("TD");
+
+
     // Fill the cells with correct data
     idCell.innerText = newRow.productID;
     nameCell.innerText = newRow.name;
     priceCell.innerText = newRow.price;
 
+    deleteCell = document.createElement("button");
+    deleteCell.innerHTML = "Delete";
+    deleteCell.onclick = function(){
+        deleteSneaker(newRow.productID);
+    };
+
     // Add the cells to the row 
     row.appendChild(idCell);
     row.appendChild(nameCell);
     row.appendChild(priceCell);
+    row.appendChild(deleteCell);
+
+    row.setAttribute('data-value', newRow.productID);
 
     
     // Add the row to the table
     currentTable.appendChild(row);
+
+    let selectMenu = document.getElementById("mySelectSneaker");
+    let option = document.createElement("option");
+    option.text = newRow.name;
+    option.value = newRow.productID;
+    selectMenu.add(option);
 }
