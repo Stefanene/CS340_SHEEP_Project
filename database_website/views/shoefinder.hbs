@@ -11,7 +11,7 @@
 </ul>
 <h2>Shoe Finder</h2> <!-- SneakerToLocations page stuff -->
 {{!-- Create a table --}}
-<table border="1" cellpadding="5">
+<table border="1" cellpadding="5" id="sneakerToLocationTable">
 
     {{!-- Header section --}}
     <thead>
@@ -24,6 +24,7 @@
                 {{@key}}
             </th>
             {{/each}}
+            <th>Delete</th>
         </tr>
     </thead>
 
@@ -32,12 +33,70 @@
 
         {{!-- For each row, print the id, name, and price, in order --}}
         {{#each data}}
-        <tr>
+        <tr data-value=[{{this.productID}}, {{this.storeID}}]>
             <td>{{this.productID}}</td>
             <td>{{this.storeID}}</td>
             <td>{{this.inventory_size}}</td>
             <td>{{this.sizeAvailable}}</td>
+            <td><button onclick="deleteSneakerToLocation({{this.productID}}, {{this.storeID}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
+<script src="./js/deleteSneakerToLocation.js"></script>
+
+<p>To add a new sneakerToLoactions, please enter their information below and click `Submit`!</p>
+<form id="addSneakerToLocations">
+    <label for="inputSneaker">Sneaker name: </label>
+    <select name="inputSneaker" id="inputSneaker">
+        <option value="">Select a Sneaker</option>
+        {{#each sneakers}}
+        <option value="{{this.productID}}">{{this.name}}</option>
+        {{/each}}
+    </select>
+    
+    <label for="inputLocation">Location name: </label>
+    <select name="inputLocation" id="inputLocation">
+        <option value="">Select a Location</option>
+        {{#each locations}}
+        <option value="{{this.storeID}}">{{this.store_name}}</option>
+        {{/each}}
+    </select>
+
+    <label for="inventory_size">Inventory size: </label>
+    <input type="number" name="inventory_size" id="inventory_size">
+
+    <label for="sizeAvailable">Sizes available: </label>
+    <input type="text" name="sizeAvailable" id="sizeAvailable">
+
+    <input type="submit">
+</form>
+<script src="./js/addSneakerToLocations.js"></script>
+
+<p>To update inventory, please enter their information below and click `Submit`!</p>
+<form id="updateSneakerToLocation">
+    <label for="updateSneaker">Sneaker name: </label>
+    <select name="updateSneaker" id="mySelectUpdateProduct">
+        <option value="">Select a Sneaker</option>
+        {{#each data}}
+        <option value="{{this.productID}}">{{this.productID}}</option>
+        {{/each}}
+    </select>
+    
+    <label for="updateLocation">Location name: </label>
+    <select name="updateLocation" id="mySelectUpdateLocation">
+        <option value="">Select a Location</option>
+        {{#each data}}
+        <option value="{{this.storeID}}">{{this.storeID}}</option>
+        {{/each}}
+    </select>
+
+    <label for="inventory_size">Inventory size: </label>
+    <input type="number" name="inventory_size" id="inventory_size_update">
+
+    <label for="sizeAvailable">Sizes available: </label>
+    <input type="text" name="sizeAvailable" id="sizeAvailable_update">
+
+    <input type="submit">
+</form>
+<script src="./js/updateSneakerToLocations.js"></script>
