@@ -25,6 +25,7 @@ app.set('view engine', '.hbs');                 // Tell express to use the handl
 // SNEAKERS
 //========================================================================
 
+
 app.get('/', function(req, res)                 // This is the basic syntax for what is called a 'route'
     {
         let query1 = "SELECT * FROM Sneakers;";               // Define our query
@@ -74,7 +75,7 @@ app.post('/addSneakerForm', function(req, res){
                 // If all went well, send the results of the query back.
                 else
                 {
-                    res.send(rows);
+                    res.redirect('/');
                 }
             })
         }
@@ -112,7 +113,7 @@ app.delete('/deleteSneakerButton', function(req,res,next){
               }
 })});
 
-  app.put('/updateSneakerAjax', function(req,res,next){
+   app.put('/updateSneakerAjax', function(req,res,next){
     let data = req.body;
   
     let sneakerID = parseInt(data.productID);
@@ -146,6 +147,8 @@ app.delete('/deleteSneakerButton', function(req,res,next){
                   })
               }
 })});
+
+
 
 //========================================================================
 //========================================================================
@@ -257,21 +260,28 @@ app.put('/updateLocationAjax', function(req,res,next){
               }
 })});
 
+
 app.get('/customers', function(req, res) {
+
     //Customers page
         
     let queryL1 = "SELECT * FROM Customers;";
     db.pool.query(queryL1, function(errorC, rowsC, fieldsC){    // Execute the query
         res.render('customers', {data: rowsC});                  // Render the index.hbs file, and also send the renderer
     });   
+
 });
+
+
 app.get('/employees', function(req, res) {
+
     //Employees page
         
     let queryL1 = "SELECT * FROM Employees;";
     db.pool.query(queryL1, function(errorE, rowsE, fieldsE){    // Execute the query
         res.render('employees', {data: rowsE});                  // Render the index.hbs file, and also send the renderer
     });   
+
 });
 
 //========================================================================
@@ -541,6 +551,8 @@ app.put('/updateSale', function(req,res,next){
                   })
               }
 })});
+
+
 
 /*
     LISTENER

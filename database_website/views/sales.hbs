@@ -39,85 +39,101 @@
             <td>{{this.cid}}</td>
             <td>{{this.time_of_sale}}</td>
             <td>{{this.eid}}</td>
-            <td><button onclick="deleteSale({{this.saleID}})">Delete</button></td>
+            <td><button onclick="deleteSale({{this.saleID}})"  class="fnt">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
 <script src="./js/deleteSale.js"></script>
+<br><br>
+<table border="1" cellpadding="5">
+    <tr>
+        <td>
+            <h2 class="lm">Add Sale Invoice</h2>
+            <p>To add a new sale, please enter their information below and click `Submit`!</p>
+            <form id="addSales">
+                <label for="inputStore">Store: </label>
+                <select name="inputStore" id="inputStore">
+                    <option value="">Select a Store</option>
+                    {{#each locations}}
+                    <option value="{{this.storeID}}">{{this.store_name}}</option>
+                    {{/each}}
+                </select>
+                
+                <label for="inputCustomer">Customer email: </label>
+                <select name="inputCustomer" id="inputCustomer">
+                    <option value="">Select a Customer</option>
+                    {{#each customers}}
+                    <option value="{{this.customerID}}">{{this.email}}</option>
+                    {{/each}}
+                </select>
+                <br><br>
+                <label for="time_of_sale">Time: </label>
+                <input type="datetime" name="time_of_sale" id="time_of_sale">
 
-<p>To add a new sale, please enter their information below and click `Submit`!</p>
-<form id="addSales">
-    <label for="inputStore">Store: </label>
-    <select name="inputStore" id="inputStore">
-        <option value="">Select a Store</option>
-        {{#each locations}}
-        <option value="{{this.storeID}}">{{this.store_name}}</option>
-        {{/each}}
-    </select>
-    
-    <label for="inputCustomer">Customer email: </label>
-    <select name="inputCustomer" id="inputCustomer">
-        <option value="">Select a Customer</option>
-        {{#each customers}}
-        <option value="{{this.customerID}}">{{this.email}}</option>
-        {{/each}}
-    </select>
+                <label for="inputEmployee">Employee email: </label>
+                <select name="inputEmployee" id="inputEmployee">
+                    <option value="">Select a Employee</option>
+                    {{#each employees}}
+                    <option value="{{this.employeeID}}">{{this.email}}</option>
+                    {{/each}}
+                </select>
 
-    <label for="time_of_sale">time: </label>
-    <input type="datetime" name="time_of_sale" id="time_of_sale">
+                <input type="submit" class="fnt">
+            </form>
+            <script src="./js/addSale.js"></script>
+        </td>
+    </tr>
+</table>
 
-    <label for="inputEmployee">Employee email: </label>
-    <select name="inputEmployee" id="inputEmployee">
-        <option value="">Select a Employee</option>
-        {{#each employees}}
-        <option value="{{this.employeeID}}">{{this.email}}</option>
-        {{/each}}
-    </select>
+<br><br>
 
-    <input type="submit">
-</form>
-<script src="./js/addSale.js"></script>
+<table border="1" cellpadding="5">
+    <tr>
+        <td>
+        <h2 class="lm">Add Sale Invoice</h2>
+        <p>If there was an error in inputting sales you can edit it here</p>
 
-<p>If there was an error in inputting sales you can edit it here</p>
+        <form id="updateSaleForm">
+            
+            <label for="saleID">Sale ID: </label>
+            <select name="saleID" id="mySelectSale">
+                <option value="test">Select a sale</option>
+                {{#each data}}
+                <option value="{{this.saleID}}">{{this.saleID}}</option>
+                {{/each}}
+            </select>
 
-<form id="updateSaleForm">
-    
-    <label for="saleID">Sale ID: </label>
-    <select name="saleID" id="mySelectSale">
-        <option value="test">Select a sale</option>
-        {{#each data}}
-        <option value="{{this.saleID}}">{{this.saleID}}</option>
-        {{/each}}
-    </select>
+            <label for="storeID">Store: </label>
+            <select name="storeID" id="mySelectStore">
+                <option value="">Select a Store</option>
+                {{#each locations}}
+                <option value="{{this.storeID}}">{{this.store_name}}</option>
+                {{/each}}
+            </select>
+            
+            <label for="customerID">Customer email: </label>
+            <select name="customerID" id="mySelectCustomer">
+                <option value="">Select a Customer</option>
+                {{#each customers}}
+                <option value="{{this.customerID}}">{{this.email}}</option>
+                {{/each}}
+            </select>
+            <br><br>
+            <label for="time_of_sale">Time: </label>
+            <input type="datetime" name="time_of_sale" id="time_of_sale_update">
 
-    <label for="storeID">Store: </label>
-    <select name="storeID" id="mySelectStore">
-        <option value="">Select a Store</option>
-        {{#each locations}}
-        <option value="{{this.storeID}}">{{this.store_name}}</option>
-        {{/each}}
-    </select>
-    
-    <label for="customerID">Customer email: </label>
-    <select name="customerID" id="mySelectCustomer">
-        <option value="">Select a Customer</option>
-        {{#each customers}}
-        <option value="{{this.customerID}}">{{this.email}}</option>
-        {{/each}}
-    </select>
+            <label for="employeeID">Employee email: </label>
+            <select name="employeeID" id="mySelectEmployee">
+                <option value="">Select a Employee</option>
+                {{#each employees}}
+                <option value="{{this.employeeID}}">{{this.email}}</option>
+                {{/each}}
+            </select>
 
-    <label for="time_of_sale">time: </label>
-    <input type="datetime" name="time_of_sale" id="time_of_sale_update">
-
-    <label for="employeeID">Employee email: </label>
-    <select name="employeeID" id="mySelectEmployee">
-        <option value="">Select a Employee</option>
-        {{#each employees}}
-        <option value="{{this.employeeID}}">{{this.email}}</option>
-        {{/each}}
-    </select>
-
-    <input type="submit">
-</form>
-<script src="./js/updateSale.js"></script>
+            <input type="submit" class="fnt">
+        </form>
+        <script src="./js/updateSale.js"></script>
+      </td>
+    </tr>
+</table>
