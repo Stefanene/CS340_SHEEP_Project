@@ -1,0 +1,96 @@
+<!-- locations.hbs -->
+<h1>SHEEP Sneakers</h1>
+<p> Welcome to our Sneaker browsing and buying business! </p>
+<ul> <!-- navbar -->
+    <li><a href="/">Sneakers</a></li>
+    <li><a href="/shoefinder">Sneaker Finder</a></li>
+    <li><a class="active" href="/locations">Locations</a></li>
+    <li><a href="/customers">Customers</a></li>
+    <li><a href="/employees">Employees</a></li>
+    <li><a href="/customers">Sales</a></li>
+</ul>
+<h2>Locations List</h2> <!-- Locations page stuff -->
+{{!-- Create a table --}}
+<table border="1" cellpadding="5" id="storeTable">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, name, and price, in order --}}
+        {{#each data}}
+        <tr>
+            <td>{{this.storeID}}</td>
+            <td>{{this.store_name}}</td>
+            <td>{{this.physical_address}}</td>
+            <td>{{this.staff_size}}</td>
+            <td><button onclick="deleteLocation({{this.storeID}})" class="fnt">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/deleteLocation.js"></script>
+<br><br>
+<table border="1" cellpadding="5">
+    <tr>
+        <td>
+            <h2 class="lm">Add Store Location</h2>
+            <p>To add a new store location, please enter their information below and click `Submit`!</p>
+            <form id="addLocationForm">
+                <label for="storeName">Store Name: </label>
+                <input type="text" name="storeName" id="storeName">
+                
+                <label for="address">Address: </label>
+                <input type="text" name="address" id="address">
+
+                <label for="staff_size">Staff size: </label>
+                <input type="number" name="staff_size" id="staff_size">
+
+                <input type="submit" class="fnt">
+            </form>
+            <script src="./js/addLocation.js"></script>
+        </td>
+    </tr>
+</table>
+<br><br>
+<table border="1" cellpadding="5">
+    <tr>
+        <td>
+            <h2 class="lm">Update Store Location</h2>
+            <p>To update a store location select the store you'd like to update, enter the new info, and submit</p>
+            <form id="updateLocationForm">
+                <label for="storeName">Store Location name: </label>
+                <select name="storeName" id="mySelectLocation">
+                    <option value="test">Select a store</option>
+                    {{#each data}}
+                    <option value="{{this.storeID}}">{{this.store_name}}</option>
+                    {{/each}}
+                </select>
+                <br><br>
+                <label for="updateAddress">Address: </label>
+                <input type="text" name="updateAddress" id="updateAddress">
+
+                <label for="updateStaff">Staff size: </label>
+                <input type="number" name="updateStaff" id="updateStaff">
+
+
+                <input type="submit" class="fnt">
+            </form>
+            <script src="./js/updateLocation.js"></script>
+        </td>
+    </tr>
+</table>

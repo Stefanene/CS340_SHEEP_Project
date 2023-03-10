@@ -1,0 +1,44 @@
+<!-- sales.hbs -->
+<h1>SHEEP Sneakers</h1>
+<p> Welcome to our Sneaker browsing and buying business! </p>
+<ul> <!-- navbar -->
+    <li><a href="/">Sneakers</a></li>
+    <li><a href="/shoefinder">Sneaker Finder</a></li>
+    <li><a href="/locations">Locations</a></li>
+    <li><a href="/customers">Customers</a></li>
+    <li><a href="/employees">Employees</a></li>
+    <li><a class="active" href="/sales">Sales</a></li>
+</ul>
+<h2>Invoice List</h2> <!-- Sales page stuff -->
+{{!-- Create a table --}}
+<table border="1" cellpadding="5">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, name, and price, in order --}}
+        {{#each data}}
+        <tr>
+            <td>{{this.saleID}}</td>
+            <td>{{this.sid}}</td>
+            <td>{{this.cid}}</td>
+            <td>{{this.time_of_sale}}</td>
+            <td>{{this.eid}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

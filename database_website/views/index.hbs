@@ -1,0 +1,90 @@
+<!-- index.hbs -->
+<h1>SHEEP Sneakers</h1>
+<p> Welcome to our Sneaker browsing and buying business! </p>
+<ul> <!-- navbar -->
+    <li><a class="active" href="">Sneakers</a></li>
+    <li><a href="/shoefinder">Sneaker Finder</a></li>
+    <li><a href="/locations">Locations</a></li>
+    <li><a href="/customers">Customers</a></li>
+    <li><a href="/employees">Employees</a></li>
+    <li><a href="/sales">Sales</a></li>
+</ul>
+<h2>Sneaker Search</h2> <!-- Sneakers page stuff -->
+{{!-- Create a table --}}
+<table border="1" cellpadding="5" id="sneakerTable">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, name, and price, in order --}}
+        {{#each data}}
+        <tr data-value={{this.productID}}>
+            <td>{{this.productID}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.price}}</td>
+            <td><button onclick="deleteSneaker({{this.productID}})" class="fnt">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/deleteSneaker.js"></script>
+<br><br>
+<table border="1" cellpadding="5">
+    <tr>
+        <td>
+            <h2 class="lm">Add New Sneaker</h2>
+            <p>To add a new sneaker, please enter their information below and click `Submit`!</p>
+            <form id="addSneakerForm">
+                <label for="sneakerName">Name: </label>
+                <input type="text" name="sneakerName" id="sneakerName">
+                
+                <label for="price">Price: </label>
+                <input type="number" name="price" id="price">
+
+                <input type="submit" class="fnt">
+            </form>
+            <script src="./js/addSneaker.js"></script>
+        </td>
+    </tr>
+</table>
+
+<br><br>
+
+<table border="1" cellpadding="5">
+    <tr>
+        <td>
+            <h2 class="lm">Update Sneaker</h2>
+            <p>To update a sneaker select the shoe you'd like to update and click update</p>
+            <form id="updateSneakerForm">
+                <label for="sneakerName">Sneaker name: </label>
+                <select name="sneakerName" id="mySelectSneaker">
+                    <option value="test">Select a shoe</option>
+                    {{#each data}}
+                    <option value="{{this.productID}}">{{this.name}}</option>
+                    {{/each}}
+                </select>
+
+                <label for="updatePrice">Price: </label>
+                <input type="number" name="updatePrice" id="updatePrice">
+
+                <input type="submit" class="fnt">
+            </form>
+            <script src="./js/updateSneaker.js"></script>
+        </td>
+    </tr>
+</table>
