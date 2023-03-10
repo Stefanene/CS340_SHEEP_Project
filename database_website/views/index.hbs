@@ -36,7 +36,7 @@
         <tr data-value={{this.productID}}>
             <td>{{this.productID}}</td>
             <td>{{this.name}}</td>
-            <td>{{this.price}}</td>
+            <td>${{this.price}}</td>
             <td><button onclick="deleteSneaker({{this.productID}})" class="fnt">Delete</button></td>
         </tr>
         {{/each}}
