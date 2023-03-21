@@ -11,7 +11,7 @@
 </ul>
 <h2>Employee List</h2> <!-- Employees page stuff -->
 {{!-- Create a table --}}
-<table border="1" cellpadding="5">
+<table border="1" cellpadding="5" id="employeeTable">
 
     {{!-- Header section --}}
     <thead>
@@ -24,6 +24,7 @@
                 {{@key}}
             </th>
             {{/each}}
+            <th>delete</th>
         </tr>
     </thead>
 
@@ -32,12 +33,69 @@
 
         {{!-- For each row, print the id, name, and price, in order --}}
         {{#each data}}
-        <tr>
+        <tr data-value={{this.employeeID}}>
             <td>{{this.employeeID}}</td>
             <td>{{this.email}}</td>
             <td>{{this.password}}</td>
             <td>{{this.position_rank}}</td>
+            <td><button onclick="deleteEmployee({{this.employeeID}})" class="fnt">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
+</table>
+<script src="./js/deleteEmployee.js"></script>
+<br><br>
+
+<table border="1" cellpadding="5">
+    <tr>
+        <td>
+            <h2 class="lm">Add Employee</h2>
+            <p>To add a new employee, please enter their information below and click `Submit`!</p>
+            <form id="addEmployeeForm">
+                <label for="employeeEmail">Email: </label>
+                <input type="text" name="employeeEmail" id="employeeEmail">
+                
+                <label for="employeePassword">Password: </label>
+                <input type="text" name="employeePassword" id="employeePassword">
+
+                <label for="position_rank">Position rank: </label>
+                <input type="number" name="position_rank" id="position_rank">
+
+                <input type="submit" class="fnt">
+            </form>
+            <script src="./js/addEmployee.js"></script>
+        </td>
+    </tr>
+</table>
+<br><br>
+
+<table border="1" cellpadding="5">
+    <tr>
+        <td>
+            <h2 class="lm">Update Employee</h2>
+            <p>To update a store location select the store you'd like to update, enter the new info, and submit</p>
+            <form id="updateEmployeeForm">
+                <label for="email">Employee email: </label>
+                <select name="email" id="mySelectEmployeeTable">
+                    <option value="test">Select an employee</option>
+                    {{#each data}}
+                    <option value="{{this.employeeID}}">{{this.email}}</option>
+                    {{/each}}
+                </select>
+                <br><br>
+                <label for="updateEmail">Email: </label>
+                <input type="text" name="updateEmail" id="updateEmployeeEmail">
+
+                <label for="updatePassword">Password: </label>
+                <input type="text" name="updatePassword" id="updateEmployeePassword">
+
+                <label for="updateRank">Position Rank: </label>
+                <input type="number" name="updateRank" id="updateRank">
+
+
+                <input type="submit" class="fnt">
+            </form>
+            <script src="./js/updateEmployee.js"></script>
+        </td>
+    </tr>
 </table>
