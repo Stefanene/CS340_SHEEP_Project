@@ -33,7 +33,7 @@
 
         {{!-- For each row, print the id, name, and price, in order --}}
         {{#each data}}
-        <tr data-value=[{{this.productID}}, {{this.storeID}}]>
+        <tr data-value={{this.productID}} data-value2= {{this.storeID}}>
             <td>{{this.productID}}</td>
             <td>{{this.storeID}}</td>
             <td>{{this.inventory_size}}</td>
