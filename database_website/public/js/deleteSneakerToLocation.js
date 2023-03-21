@@ -26,16 +26,15 @@ function deleteSneakerToLocation(productID, storeID) {
     xhttp.send(JSON.stringify(data));
   }
   
-// AJAX NOT FUNCTIONING BECAUSE oF data-value having 2 values.
-//   function deleteRow(productID, storeID){
+  function deleteRow(productID, storeID){
   
-//     let table = document.getElementById("sneakerToLocationTable");
-//     for (let i = 0, row; row = table.rows[i]; i++) {
-//        //iterate through rows
-//        //rows would be accessed using the "row" variable assigned in the for loop
-//        if (table.rows[i].getAttribute("data-value") == [productID, storeID]) {
-//             table.deleteRow(i);
-//             break;
-//        }
-//     }
-//   }
+    let table = document.getElementById("sneakerToLocationTable");
+    for (let i = 0, row; row = table.rows[i]; i++) {
+       //iterate through rows
+       //rows would be accessed using the "row" variable assigned in the for loop
+       if (table.rows[i].getAttribute("data-value") == productID && table.rows[i].getAttribute("data-value2") == storeID) {
+            table.deleteRow(i);
+            break;
+       }
+    }
+  }

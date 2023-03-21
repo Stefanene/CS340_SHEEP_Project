@@ -41,7 +41,10 @@ addSales.addEventListener("submit", function (e) {
             addRowToTable(xhttp.response);
 
             // Clear the input fields for another transaction
-            time_of_sale_value.value = '';
+            inputStore.value = '';
+            inputCustomer.value = '';
+            time_of_sale.value = '';
+            inputEmployee.value = '';
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error with the input.")
@@ -108,25 +111,7 @@ addRowToTable = (data) => {
 
     let selectMenuSale = document.getElementById("mySelectSale");
     let optionSale = document.createElement("option");
-    optionSale.text = newRow.name;
+    optionSale.text = newRow.saleID;
     optionSale.value = newRow.saleID;
     selectMenuSale.add(optionSale);
-
-    let selectMenuStore = document.getElementById("mySelectStore");
-    let optionStore = document.createElement("option");
-    optionStore.text = newRow.name;
-    optionStore.value = newRow.saleID;
-    selectMenuStore.add(optionStore);
-
-    let selectMenuCustomer = document.getElementById("mySelectCustomer");
-    let optionCustomer = document.createElement("option");
-    optionCustomer.text = newRow.name;
-    optionCustomer.value = newRow.saleID;
-    selectMenuCustomer.add(optionCustomer);
-
-    let selectMenuEmployee = document.getElementById("mySelectEmployee");
-    let optionEmployee = document.createElement("option");
-    optionEmployee.text = newRow.name;
-    optionEmployee.value = newRow.saleID;
-    selectMenuEmployee.add(optionEmployee);
 }

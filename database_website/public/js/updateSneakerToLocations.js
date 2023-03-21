@@ -58,8 +58,11 @@ updateSneakerToLocation.addEventListener("submit", function (e) {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
 
             // Add the new data to the table
-            // updateRow(xhttp.response, sneakerNameValue, storeNameValue);
-
+            updateRow(xhttp.response, sneakerNameValue, storeNameValue);
+            inputSneakerName.value = '';
+            inputStoreName.value = '';
+            inputInventorySize.value = '';
+            inputSizeAvailable.value = '';
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error with the input.")
@@ -72,30 +75,30 @@ updateSneakerToLocation.addEventListener("submit", function (e) {
 })
 
 // ajax is stil a WIP becuase there's an error with data-value having 2 values
-// function updateRow(data, saleID){
-//     let parsedData = JSON.parse(data);
+function updateRow(data, productID, storeID){
+    let parsedData = JSON.parse(data);
     
-//     let table = document.getElementById("saleTable");
+    let table = document.getElementById("sneakerToLocationTable");
 
-//     for (let i = 0, row; row = table.rows[i]; i++) {
-//        //iterate through rows
-//        //rows would be accessed using the "row" variable assigned in the for loop
-//        if (table.rows[i].getAttribute("data-value") == saleID) {
+    for (let i = 0, row; row = table.rows[i]; i++) {
+       //iterate through rows
+       //rows would be accessed using the "row" variable assigned in the for loop
+       if (table.rows[i].getAttribute("data-value") == productID && table.rows[i].getAttribute("data-value2") == storeID) {
 
-//             // Get the location of the row where we found the matching person ID
-//             let updateRowIndex = table.getElementsByTagName("tr")[i];
+            // Get the location of the row where we found the matching person ID
+            let updateRowIndex = table.getElementsByTagName("tr")[i];
 
-//             // Get td of homeworld value
-//             let sid = updateRowIndex.getElementsByTagName("td")[1];
-//             let cid = updateRowIndex.getElementsByTagName("td")[2];
-//             let time_of_sale = updateRowIndex.getElementsByTagName("td")[3];
-//             let eid = updateRowIndex.getElementsByTagName("td")[4];
+            // Get td of homeworld value
+            let pid = updateRowIndex.getElementsByTagName("td")[0];
+            let sid = updateRowIndex.getElementsByTagName("td")[1];
+            let inventory_size = updateRowIndex.getElementsByTagName("td")[2];
+            let sizeAvailable = updateRowIndex.getElementsByTagName("td")[3];
 
-//             // update the price
-//             sid.innerHTML = parsedData[0].sid;
-//             cid.innerHTML = parsedData[0].cid;
-//             time_of_sale.innerHTML = parsedData[0].time_of_sale;
-//             eid.innerHTML = parsedData[0].eid;
-//        }
-//     }
-// }
+            // update the price
+            pid.innerHTML = parsedData[0].productID;
+            sid.innerHTML = parsedData[0].storeID;
+            inventory_size.innerHTML = parsedData[0].inventory_size;
+            sizeAvailable.innerHTML = parsedData[0].sizeAvailable;
+       }
+    }
+}
