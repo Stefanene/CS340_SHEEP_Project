@@ -272,6 +272,98 @@ app.get('/customers', function(req, res) {
 
 });
 
+app.post('/addCustomer', function(req, res){
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Create the query and run it on the database
+    query1 = `INSERT INTO Customers (email, password) VALUES ('${data.email}', '${data.password}')`;
+    db.pool.query(query1, function(error, rows, fields){
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+
+        else
+        {
+            // If there was no error, perform a SELECT * on bsg_people
+            query2 = `SELECT * FROM Customers;`;
+            db.pool.query(query2, function(error, rows, fields){
+
+                // If there was an error on the second query, send a 400
+                if (error) {
+                    
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                // If all went well, send the results of the query back.
+                else
+                {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+})
+
+app.delete('/deleteCustomer', function(req,res,next){
+    let data = req.body;
+    let customerID = parseInt(data.id);
+    let deleteCustomer = `DELETE FROM Customers WHERE customerID = ?`;  
+  
+          // Run the 1st query
+          db.pool.query(deleteCustomer, [customerID], function(error, rows, fields){
+            if (error) {
+                console.log(error);
+                res.sendStatus(400);
+            } else {
+                res.sendStatus(204);
+            }
+})});
+
+app.put('/updateCustomer', function(req,res,next){
+    let data = req.body;
+  
+    let customerID = parseInt(data.customerID);
+    let email = data.email;
+    let password = data.password;
+
+
+  
+    let queryUpdateCustomer = `UPDATE Customers SET email = '${email}', password = '${password}' WHERE customerID = '${customerID}'`;
+    let selectCustomer = `SELECT * FROM Customers WHERE customerID = '${customerID}'`
+
+
+          // Run the 1st query
+          db.pool.query(queryUpdateCustomer, function(error, rows, fields){
+              if (error) {
+  
+              // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+              console.log(error);
+              res.sendStatus(400);
+              }
+  
+              // If there was no error, we run our second query and return that data so we can use it to update the people's
+              // table on the front-end
+              else
+              {
+                  // Run the second query
+                  db.pool.query(selectCustomer, function(error, rows, fields) {
+  
+                      if (error) {
+                          console.log(error);
+                          res.sendStatus(400);
+                      } else {
+                          res.send(rows);
+                      }
+                  })
+              }
+})});
 
 app.get('/employees', function(req, res) {
 
