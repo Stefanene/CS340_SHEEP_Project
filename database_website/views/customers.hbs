@@ -11,7 +11,7 @@
 </ul>
 <h2>Customer List</h2> <!-- Customers page stuff -->
 {{!-- Create a table --}}
-<table border="1" cellpadding="5">
+<table border="1" cellpadding="5" id="customerTable">
 
     {{!-- Header section --}}
     <thead>
@@ -24,6 +24,7 @@
                 {{@key}}
             </th>
             {{/each}}
+            <th>delete</th>
         </tr>
     </thead>
 
@@ -32,11 +33,60 @@
 
         {{!-- For each row, print the id, name, and price, in order --}}
         {{#each data}}
-        <tr>
+        <tr data-value={{this.customerID}}>
             <td>{{this.customerID}}</td>
             <td>{{this.email}}</td>
             <td>{{this.password}}</td>
+            <td><button onclick="deleteCustomer({{this.customerID}})" class="fnt">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
+</table>
+<script src="./js/deleteCustomer.js"></script>
+<br><br>
+
+<table border="1" cellpadding="5">
+    <tr>
+        <td>
+            <h2 class="lm">Add New Customer</h2>
+            <p>To add a new customer, please enter their information below and click `Submit`!</p>
+            <form id="addCustomerForm">
+                <label for="customerEmail">email: </label>
+                <input type="text" name="customerEmail" id="customerEmail">
+                
+                <label for="customerPassword">password: </label>
+                <input type="text" name="customerPassword" id="customerPassword">
+
+                <input type="submit" class="fnt">
+            </form>
+            <script src="./js/addCustomer.js"></script>
+        </td>
+    </tr>
+</table>
+
+<table border="1" cellpadding="5">
+    <tr>
+        <td>
+            <h2 class="lm">Update Sneaker</h2>
+            <p>To update a Customer select the customer id you'd like to update and click update</p>
+            <form id="updateCustomerForm">
+                <label for="customerID">Customer email: </label>
+                <select name="customerID" id="mySelectCustomer">
+                    <option value="test">Select a customerID</option>
+                    {{#each data}}
+                    <option value="{{this.customerID}}">{{this.email}}</option>
+                    {{/each}}
+                </select>
+
+                <label for="updateCustomerEmail">new email: </label>
+                <input type="text" name="updateCustomerEmail" id="updateCustomerEmail">
+
+                <label for="updateCustomerPassword">new password: </label>
+                <input type="text" name="updateCustomerPassword" id="updateCustomerPassword">
+
+                <input type="submit" class="fnt">
+            </form>
+            <script src="./js/updateCustomer.js"></script>
+        </td>
+    </tr>
 </table>
