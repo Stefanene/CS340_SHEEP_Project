@@ -75,7 +75,7 @@ app.post('/addSneakerForm', function(req, res){
                 // If all went well, send the results of the query back.
                 else
                 {
-                    res.redirect('/');
+                    res.send(rows);
                 }
             })
         }
@@ -329,28 +329,12 @@ app.post('/addSneakerToLocations', function(req, res){
 
             // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error)
-            res.sendStatus(401);
+            res.sendStatus(400);
         }
 
         else
         {
-            // If there was no error, perform a SELECT * on bsg_people
-            query2 = `SELECT * FROM SneakerToLocations;`;
-            db.pool.query(query2, function(error, rows, fields){
-
-                // If there was an error on the second query, send a 400
-                if (error) {
-                    
-                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-                    console.log(error);
-                    res.sendStatus(400);
-                }
-                // If all went well, send the results of the query back.
-                else
-                {
-                    res.send(rows);
-                }
-            })
+            res.send(rows);
         }
     })
 })
