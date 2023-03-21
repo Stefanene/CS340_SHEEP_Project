@@ -376,6 +376,99 @@ app.get('/employees', function(req, res) {
 
 });
 
+app.post('/addEmployee', function(req, res){
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+    let position = parseInt(data.position_rank);
+
+    // Create the query and run it on the database
+    query1 = `INSERT INTO Employees (email, password, position_rank) VALUES ('${data.email}', '${data.password}', '${position}')`;
+    db.pool.query(query1, function(error, rows, fields){
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+
+        else
+        {
+            // If there was no error, perform a SELECT * on bsg_people
+            query2 = `SELECT * FROM Employees;`;
+            db.pool.query(query2, function(error, rows, fields){
+
+                // If there was an error on the second query, send a 400
+                if (error) {
+                    
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                // If all went well, send the results of the query back.
+                else
+                {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+})
+
+app.delete('/deleteEmployee', function(req,res,next){
+    let data = req.body;
+    let employeeID = parseInt(data.id);
+    let deleteEmployee = `DELETE FROM Employees WHERE employeeID = ?`;  
+  
+          // Run the 1st query
+          db.pool.query(deleteEmployee, [employeeID], function(error, rows, fields){
+            if (error) {
+                console.log(error);
+                res.sendStatus(400);
+            } else {
+                res.sendStatus(204);
+            }
+})});
+
+app.put('/updateEmployee', function(req,res,next){
+    let data = req.body;
+  
+    let employeeID = parseInt(data.employeeID);
+    let email = data.email;
+    let password = data.password;
+    let rank = parseInt(data.position_rank);
+  
+    let queryUpdateEmployee = `UPDATE Employees SET email = '${email}', password = '${password}', position_rank = '${rank}' WHERE employeeID = '${employeeID}'`;
+    let selectEmployee = `SELECT * FROM Employees WHERE employeeID = '${employeeID}'`
+
+
+          // Run the 1st query
+          db.pool.query(queryUpdateEmployee, function(error, rows, fields){
+              if (error) {
+  
+              // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+              console.log(error);
+              res.sendStatus(400);
+              }
+  
+              // If there was no error, we run our second query and return that data so we can use it to update the people's
+              // table on the front-end
+              else
+              {
+                  // Run the second query
+                  db.pool.query(selectEmployee, function(error, rows, fields) {
+  
+                      if (error) {
+                          console.log(error);
+                          res.sendStatus(400);
+                      } else {
+                          res.send(rows);
+                      }
+                  })
+              }
+})});
+
 //========================================================================
 //========================================================================
 // SNEAKER TO LOCATIONS
